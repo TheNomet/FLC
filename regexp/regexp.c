@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+
 void min10(int from, int to, int zeronum, char *partialsolution);
 void min100(int from[2],int to0[2],int zeronum, char *partialsolution);
 void min1000(int from [3], int to0[3], int zeronum);
@@ -120,15 +121,15 @@ int main(int argc, char **argv){
 /*
 	Generates the regexp for numbers < 10
 
-	@param from 
-		Lower bound number	
-	@param to 
-		Upper bound number	
+	@param from
+		Lower bound number
+	@param to
+		Upper bound number
 	@param zeronum
 		Number of zeros to put before the regexp
 	@param partialsolution
 		If NULL -> regexp written on stdout
-		else regexp returned in the string		
+		else regexp returned in the string
 */
 void min10(int from, int to, int zeronum, char *partialsolution){
     char solution[1024];
@@ -155,16 +156,16 @@ void min10(int from, int to, int zeronum, char *partialsolution){
 /*
 	Generates the regexp for numbers < 100
 
-	@param from 
+	@param from
 		Lower bound number, composed by two numbers
-	@param to 
+	@param to
 		Upper bound number, composed by two numbers
 	@param zeronum
 		Number of zeros to put before the regexp
 		if zeronum==-2 -> in the result is also included the id of the regexp returned by min10
 	@param partialsolution
 		If NULL -> regexp written on stdout
-		else regexp returned in the string		
+		else regexp returned in the string
 */
 void min100(int from[2], int to0[2],int zeronum, char *partialsolution){
     char solution[1024]="";//final solution
@@ -193,12 +194,12 @@ void min100(int from[2], int to0[2],int zeronum, char *partialsolution){
         }
         else sprintf(partial,"%d",from[0]+1);
 		//fill up solution
-        if(to0[1]>0){ 
+        if(to0[1]>0){
             sprintf(solution,"%s[0-%d]",partial,to0[1]);
         }
         else sprintf(solution,"%s0",partial);
     }
-    else{ 
+    else{
         if(from[0]+1!=9 && from[0]+1<to0[0])
             sprintf(solution,"[%d-%d][0-9]",from[0]+1,to0[0]);
         else
@@ -249,13 +250,13 @@ void min100(int from[2], int to0[2],int zeronum, char *partialsolution){
 /*
 	Generates the regexp for numbers < 100
 
-	@param from 
+	@param from
 		Lower bound number, composed by three numbers
-	@param to 
+	@param to
 		Upper bound number, composed by three numbers
 	@param zeronum
 		Number of zeros to put before the regexp
-		if zeronum==-2 -> in the result is also included the id of the regexp returned by min10	
+		if zeronum==-2 -> in the result is also included the id of the regexp returned by min10
 */
 
 void min1000(int from[2], int to0[3], int zeronum){
@@ -287,7 +288,7 @@ void min1000(int from[2], int to0[3], int zeronum){
     }
     char partial[1024];
 
-    if(from[0]>0){ // from > 100 
+    if(from[0]>0){ // from > 100
         char lower[1024]="";
         char lower1[1024]="";
         int duo[2]={9,9};
