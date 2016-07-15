@@ -32,7 +32,11 @@
 *.dSYM/
 *.su
 
-# JAVA
+# -----------BIN
+
+bin/
+
+# -----------JAVA
 *.class
 
 # Mobile Tools for Java (J2ME)
