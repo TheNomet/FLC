@@ -55,8 +55,7 @@ regexp/Yylex.java
 regexp/Yylex.java~
 regexp/do.sh
 regexp/do.sh~
-regexp/input.txt
-regexp/input.txt~
+regexp/input.*
 regexp/parser.cup~
 regexp/parser.java
 regexp/scanner.jflex~
