@@ -36,17 +36,6 @@
 
 bin/
 
-#--------jflex/cup compile
-regexp/Yylex.*
-regexp/do.sh
-regexp/do.sh~
-regexp/input.*
-regexp/parser.cup~
-regexp/parser.java
-regexp/scanner.jflex~
-regexp/sym.java
-
-
 # -----------JAVA
 *.class
 
