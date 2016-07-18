@@ -35,13 +35,15 @@ id = n(X)*[0-9]+
 
 integer = 0|[1-9][0-9]*
 
+sep = "//-----------//"
+
 %%
 "ALL"			{return symbol(sym.ALL, new Integer(-1));}			
 "ODD"			{return symbol(sym.ODD, new Integer(1));}
 "EVEN"			{return symbol(sym.EVEN, new Integer(0));}
 "END"			{return symbol(sym.END);}
 "="				{return symbol(sym.EQ);}
-"."				{return symbol(sym.DOT);}
+"$"				{return symbol(sym.DOL);}
 ";"				{return symbol(sym.S);}
 ","				{return symbol(sym.C);}
 "("				{return symbol(sym.RO);}
@@ -56,12 +58,12 @@ integer = 0|[1-9][0-9]*
 "*"				{return symbol(sym.MUL);}
 {id}			{return symbol(sym.ID, new String(yytext()));}
 {integer}		{return symbol(sym.INT, new String(yytext()));}
-{nl}  			{return symbol(sym.NL);}
 
+{sep}			{return symbol(sym.SEP);}
 
 //UTILS
 {comment}			{;}
-
+{nl}  				{;}
 {space} 			{;}
 . 					{print("error: "+yytext());}
 //UTILS

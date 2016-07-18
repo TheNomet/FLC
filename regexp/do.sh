@@ -9,7 +9,7 @@
 # a link to this script (or this script)
 
 # pass the INPUT file to be elaborated as first parameter of this script
-
+rm input.txt
 touch input.txt
 if [ $# -lt 3 ]; then
 	echo "Syntax: ./do.sh <from> <to> <varname> [<1 -from odd numbers> <0 -for even numbers>]? "
