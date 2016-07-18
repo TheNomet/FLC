@@ -1,7 +1,7 @@
 
 all : parser.java
 
-parser.java : scanner.jflex parser.cup 
+parser.java : scanner.jflex parser.cup Makefile 
 	jflex scanner.jflex 
 	java java_cup.Main -expect 4 parser.cup 
 	javac *.java 

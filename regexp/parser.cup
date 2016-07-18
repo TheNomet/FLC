@@ -17,7 +17,7 @@ parser code {:
 
 /** Terminal symbols **/
 
-terminal EQ,SEP,S,C,RO,RC,SO,SC,GO,GC,PLUS,MINUS,PIPE,MUL,,END,DOL;
+terminal EQ,SEP,S,C,RO,RC,SO,SC,GO,GC,PLUS,MINUS,PIPE,END,MUL,DOL;
 terminal String ID,INT;
 terminal Integer ODD,EVEN,ALL;
 
@@ -33,20 +33,36 @@ start with start_sym;
 /***** Grammar rules *****/
 
 
-start_sym ::= ODD  instructionl:last END 
+start_sym ::= ODD negpart:neg instructionl:last END 
 				{:
 					String y = parser.sym_table.get(last);
-					System.out.println(last+"="+y);
+					String negs = parser.sym_table.get(neg);
+					if( negs != "empty"){
+						System.out.println("neg="+negs);
+						System.out.println("pos"+"="+y);
+					}
+					else System.out.println(last+"="+y);
+					
 				:}
-			| EVEN  instructionl:last END 
+			| EVEN negpart:neg instructionl:last END 
 				{:
 					String y = parser.sym_table.get(last);
-					System.out.println(last+"="+y);
+					String negs = parser.sym_table.get(neg);
+					if( negs != "empty"){
+						System.out.println("neg="+negs);
+						System.out.println("pos"+"="+y);
+					}
+					else System.out.println(last+"="+y);
 				:}
-			| ALL   instructionl:last END 
+			| ALL negpart:neg instructionl:last END 
 				{:
 					String y = parser.sym_table.get(last);
-					System.out.println(last+"="+y);
+					String negs = parser.sym_table.get(neg);
+					if( negs != "empty"){
+						System.out.println("neg="+negs);
+						System.out.println("pos"+"="+y);
+					}
+					else System.out.println(last+"="+y);
 				:}
 
 ;
@@ -85,7 +101,7 @@ expl ::= expl:res NT1 exp:x
 			{:RESULT = x;:}
 ;
 NT1 ::= 
-	{:
+	{: 
 		RESULT = (Integer) parser.stack(-1);//0 even - 1 odd
 	:}
 ;
@@ -133,8 +149,15 @@ exp ::= INT:x
 ;
 
 
-negpart ::=  instructionl:  SEP  
-			|
+negpart ::=  SEP instructionl:neg SEP
+				{:
+					//parser.sym_table.put("neg",neg);
+					RESULT = neg;
+				:}
+			| 	{:
+					parser.sym_table.put("neg","empty");
+					RESULT = "neg";
+				:}
 ;
 
 

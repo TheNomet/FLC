@@ -28,21 +28,39 @@ elif [ $# -eq 4 ]; then #only odd or even
 fi
 
 gcc -o regexp regexp.c
-./regexp $1 $2 1 >> input.txt
+to=$1
+if [ $1 -lt 0 ]; then #<0
+	echo "//-----------//" >> input.txt	
+	./regexp 1 ${to#"-"} 2 >> input.txt	
+	echo "//-----------//" >> input.txt
+	./regexp 0 $2 1 >> input.txt
+else 
+	./regexp $1 $2 1 >> input.txt
+fi
 echo END >> input.txt
 
 #cat input.txt
 make 1> /dev/null 2>/dev/null
+#make
+
 final="$(java Main input.txt)" 
 
-IFS='='
-flag=0
-for word in $final 
-	do if [ $flag -eq 0 ]; then
-			flag=1;
-			echo -n "$3 = "
-		else
-			echo -n "$word"
-		fi
-done
-echo ""
+if [ $1 -lt 0 ]; then #<0
+	IFS=" "
+	for word in $final 
+		do echo $final
+	done
+	echo $3" = {pos}|\"-\"{neg}"
+else
+	IFS='='
+	flag=0
+	for word in $final 
+		do if [ $flag -eq 0 ]; then
+				flag=1;
+				echo -n "$3 = "
+			else
+				echo -n "$word"
+			fi
+	done
+	echo ""
+fi

@@ -24,15 +24,7 @@ int main(int argc, char **argv){
         return -1;
     }
     N=atoi(argv[3]);
-    if(argv[1][0]=='-'){
-        from=atoi(argv[1]+1);
-        char command[1024];
-        sprintf(command,"./regexp 1 %d 5",from);
-        system(command);
-        printf("\n//-----------//\n\n");
-        from=0;
-    }
-    else from=atoi(argv[1]);
+    from=atoi(argv[1]);
     to=atoi(argv[2]);
     if (from>to){
         printf("error: 'from -%d-' freater than 'to -%d-'\n",from,to);
