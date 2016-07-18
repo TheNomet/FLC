@@ -108,14 +108,14 @@ exp ::= INT:x
 			int to = Integer.parseInt(y);
 			if(odd==1){//only odd numbers
 				if(from%2==0) from++;
-				for( i = from; i < to; i+=2){
+				for( i = from; i <= to; i+=2){
 					RESULT+=""+i;
 				}		
 				RESULT +="]";
 			}
 			else if(odd==0){//only even numbers
 				if(from%2==1) from++;
-				for( i = from; i < to; i+=2){
+				for( i = from; i <= to; i+=2){
 					RESULT+=""+i;
 				}		
 				RESULT +="]";				

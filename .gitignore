@@ -32,14 +32,17 @@
 *.dSYM/
 *.su
 
+#------------OLD FILES
+*.*~
+*~
+.*~
+
 # -----------BIN
 
 bin/
 
 #--------jflex/cup compile
 regexp/Yylex.*
-regexp/do.sh
-regexp/do.sh~
 regexp/input.*
 regexp/parser.cup~
 regexp/parser.java
