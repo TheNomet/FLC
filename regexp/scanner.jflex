@@ -36,6 +36,9 @@ id = n(X)*[0-9]+
 integer = 0|[1-9][0-9]*
 
 %%
+"ALL"			{return symbol(sym.ALL, new Integer(-1));}			
+"ODD"			{return symbol(sym.ODD, new Integer(1));}
+"EVEN"			{return symbol(sym.EVEN, new Integer(0));}
 "END"			{return symbol(sym.END);}
 "="				{return symbol(sym.EQ);}
 "."				{return symbol(sym.DOT);}

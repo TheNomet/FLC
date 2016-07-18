@@ -49,3 +49,16 @@ bin/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#--------jflex/cup compiler
+	Yylex.java
+	Yylex.java~
+	do.sh
+	do.sh~
+	input.txt
+	input.txt~
+	parser.cup~
+	parser.java
+	scanner.jflex~
+	sym.java
+

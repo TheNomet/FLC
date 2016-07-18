@@ -135,7 +135,7 @@ void min10(int from, int to, int zeronum, char *partialsolution){
     char solution[1024];
     int i;
     if(to>0)
-        sprintf(solution,"[%d-%d]",from,to);
+        sprintf(solution,";%d-%d;",from,to);
     else sprintf(solution,"%d",0);
     if(partialsolution==NULL){
         printf("n%d = ",N);
@@ -176,34 +176,34 @@ void min100(int from[2], int to0[2],int zeronum, char *partialsolution){
 
     if(from[0]>0 && from[0]<to0[0]){//from >= 10 && from < to0 ---> fill up partialf
         if(from[1]<9){
-            sprintf(partialf,"%d[%d-9]",from[0],from[1]);
+            sprintf(partialf,"%d;%d-9;",from[0],from[1]);
         }
         else
             sprintf(partialf,"%d9",from[0]);
     }
     if (from[0]>0 && from[0]==to0[0]){ //from >= 10 && dozens of from == dozens of to0
-        sprintf(partialf,"%d[%d-%d]",from[0],from[1],to0[1]);
+        sprintf(partialf,"%d;%d-%d;",from[0],from[1],to0[1]);
         flag=0;
     }
     else if(to0[1]!=9){//from >= 10 && from < to0 --> fill up partial
         if(to0[0]>from[0]+1){
             if(to0[0]-1>from[0]+1){
-                sprintf(partial,"[%d-%d][0-9]|%d",from[0]+1,to0[0]-1,to0[0]);
+                sprintf(partial,"[%d-%d];0-9;|%d",from[0]+1,to0[0]-1,to0[0]);
             }
-            else sprintf(partial,"%d[0-9]|%d",from[0]+1,to0[0]);
+            else sprintf(partial,"%d;0-9;|%d",from[0]+1,to0[0]);
         }
         else sprintf(partial,"%d",from[0]+1);
 		//fill up solution
         if(to0[1]>0){
-            sprintf(solution,"%s[0-%d]",partial,to0[1]);
+            sprintf(solution,"%s;0-%d;",partial,to0[1]);
         }
         else sprintf(solution,"%s0",partial);
     }
     else{
         if(from[0]+1!=9 && from[0]+1<to0[0])
-            sprintf(solution,"[%d-%d][0-9]",from[0]+1,to0[0]);
+            sprintf(solution,"[%d-%d];0-9;",from[0]+1,to0[0]);
         else
-            sprintf(solution,"%d[0-9]",to0[0]);
+            sprintf(solution,"%d;0-9;",to0[0]);
     }
 	//print on screen
     if(partialsolution==NULL){
@@ -331,18 +331,18 @@ void min1000(int from[2], int to0[3], int zeronum){
 	//second part
     if(!flag){
         if(to0[0]==9 && to0[1]==9 && to0[2]==9)
-            sprintf(solution,"[%d-%d][0-9]{2}",from[0]+1,to0[0]);
+            sprintf(solution,"[%d-%d][0-9];0-9;",from[0]+1,to0[0]);
         else{
             if(to0[0]>from[0]+1){
                 if(to0[0]-1>from[0]+1)
-                    sprintf(partial,"[%d-%d][0-9]{2}|%d",from[0]+1,to0[0]-1,to0[0]);
-                else sprintf(partial,"%d[0-9]{2}|%d",from[0]+1,to0[0]);
+                    sprintf(partial,"[%d-%d][0-9];0-9;|%d",from[0]+1,to0[0]-1,to0[0]);
+                else sprintf(partial,"%d[0-9];0-9;|%d",from[0]+1,to0[0]);
             }
             else sprintf(partial,"%d",from[0]+1);
             if(to0[1]>0) {
                 min100(from+1,to0+1,0,NULL);
                 if(from[1]==0)
-                    sprintf(solution,"%s(0[%d-9]|{nX%d})",partial,from[2],N);
+                    sprintf(solution,"%s(0;%d-9;|{nX%d})",partial,from[2],N);
                 else sprintf(solution,"%s{nX%d}",partial,N);
             }
             else if(to0[2]>0){
@@ -390,8 +390,8 @@ void min10000(int from[4], int to0[4], int zeronum){
 
     if(to0[0]>1){
         if(to0[0]-1>=2)
-            sprintf(partial,"[1-%d][0-9]{3}|%d",to0[0]-1,to0[0]);
-        else sprintf(partial,"1[0-9]{3}|%d",to0[0]);
+            sprintf(partial,"[1-%d][0-9]{2};0-9;|%d",to0[0]-1,to0[0]);
+        else sprintf(partial,"1[0-9]{2};0-9;|%d",to0[0]);
     }
     else sprintf(partial,"1");
     if(to0[1]>0) {
