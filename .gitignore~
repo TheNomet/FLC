@@ -51,14 +51,14 @@ bin/
 hs_err_pid*
 
 #--------jflex/cup compile
-scanner/Yylex.java
-scanner/Yylex.java~
-scanner/do.sh
-scanner/do.sh~
-scanner/input.txt
-scanner/input.txt~
-scanner/parser.cup~
-scanner/parser.java
-scanner/scanner.jflex~
-scanner/sym.java
+regexp/Yylex.java
+regexp/Yylex.java~
+regexp/do.sh
+regexp/do.sh~
+regexp/input.txt
+regexp/input.txt~
+regexp/parser.cup~
+regexp/parser.java
+regexp/scanner.jflex~
+regexp/sym.java
 

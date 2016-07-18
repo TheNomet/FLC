@@ -60,5 +60,5 @@ regexp/input.txt~
 regexp/parser.cup~
 regexp/parser.java
 regexp/scanner.jflex~
-regexp/sym.java
+regex/sym.java
 
