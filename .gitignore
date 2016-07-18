@@ -51,7 +51,7 @@ bin/
 hs_err_pid*
 
 #--------jflex/cup compile
-regexp/Yylex.*
+regexp/Yylex.
 regexp/do.sh
 regexp/do.sh~
 regexp/input.*
