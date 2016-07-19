@@ -54,14 +54,14 @@ if [ $1 -lt 0 ]; then #<0
 	for word in $final 
 		do echo $final
 	done
-	echo $3" = {pos}|\"-\"{neg}"
+	echo $3"=\"-\"{neg}|{pos}"
 else
 	IFS='='
 	flag=0
 	for word in $final 
 		do if [ $flag -eq 0 ]; then
 				flag=1;
-				echo -n "$3 = "
+				echo -n "$3="
 			else
 				echo -n "$word"
 			fi
