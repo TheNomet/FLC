@@ -43,11 +43,15 @@ bin/
 
 #--------jflex/cup compile
 regexp/Yylex.*
+regexp/regexp
 regexp/input.*
 regexp/parser.cup~
 regexp/parser.java
 regexp/scanner.jflex~
 regexp/sym.java
+regexp/utils
+
+TODO.txt
 
 
 # -----------JAVA

@@ -9,7 +9,7 @@
 # a link to this script (or this script)
 
 # pass the INPUT file to be elaborated as first parameter of this script
-rm input.txt
+rm input.txt 1> /dev/null 2>/dev/null
 touch input.txt
 if [ $# -lt 3 ]; then
 	echo "Syntax: ./do.sh <from> <to> <varname> [<1 -from odd numbers> <0 -for even numbers>]? "
@@ -26,22 +26,26 @@ elif [ $# -eq 4 ]; then #only odd or even
 		echo ODD > input.txt
 	fi
 fi
-
-gcc -o regexp regexp.c
+mkdir utils 2> /dev/null
+gcc -o ./utils/regexp regexp.c
 to=$1
 if [ $1 -lt 0 ]; then #<0
 	echo "//-----------//" >> input.txt	
-	./regexp 1 ${to#"-"} 2 >> input.txt	
+	./utils/regexp 1 ${to#"-"} 2 >> input.txt	
 	echo "//-----------//" >> input.txt
-	./regexp 0 $2 1 >> input.txt
+	./utils/regexp 0 $2 1 >> input.txt
 else 
-	./regexp $1 $2 1 >> input.txt
+	./utils/regexp $1 $2 1 >> input.txt
 fi
 echo END >> input.txt
 
 #cat input.txt
 make 1> /dev/null 2>/dev/null
 #make
+
+mv input.txt ./utils
+
+cd ./utils
 
 final="$(java Main input.txt)" 
 
@@ -64,3 +68,5 @@ else
 	done
 	echo ""
 fi
+
+cd ..

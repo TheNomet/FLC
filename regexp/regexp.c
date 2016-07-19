@@ -126,7 +126,9 @@ int main(int argc, char **argv){
 void min10(int from, int to, int zeronum, char *partialsolution){
     char solution[1024];
     int i;
-    if(to>0)
+    if(from==to)
+        sprintf(solution,"%d",from);
+    else if(to>0)
         sprintf(solution,"$%d-%d$",from,to);
     else sprintf(solution,"%d",0);
     if(partialsolution==NULL){
@@ -165,7 +167,6 @@ void min100(int from[2], int to0[2],int zeronum, char *partialsolution){
     char partialf[1024]="";//partial solution for "from"
     int i;
     int flag=1;
-
     if(from[0]>0 && from[0]<to0[0]){//from >= 10 && from < to0 ---> fill up partialf
         if(from[1]<9){
             sprintf(partialf,"%d$%d-9$",from[0],from[1]);
@@ -174,7 +175,10 @@ void min100(int from[2], int to0[2],int zeronum, char *partialsolution){
             sprintf(partialf,"%d9",from[0]);
     }
     if (from[0]>0 && from[0]==to0[0]){ //from >= 10 && dozens of from == dozens of to0
-        sprintf(partialf,"%d$%d-%d$",from[0],from[1],to0[1]);
+        if(from[1]!=to0[1])
+            sprintf(partialf,"%d$%d-%d$",from[0],from[1],to0[1]);
+        else
+            sprintf(partialf,"%d%d",from[0],from[1]);
         flag=0;
     }
     else if(to0[1]!=9){//from >= 10 && from < to0 --> fill up partial
@@ -218,8 +222,8 @@ void min100(int from[2], int to0[2],int zeronum, char *partialsolution){
     }
 	//fill partialsolution
     else{
-        if(flag)
-            strcat(partialsolution,"(");
+       // if(flag)
+       //     strcat(partialsolution,"(");
         for(i=0;i<zeronum;i++)
             strcat(partialsolution,"0");
 
@@ -234,8 +238,8 @@ void min100(int from[2], int to0[2],int zeronum, char *partialsolution){
 
         if(zeronum>0)
             strcat(partialsolution,")");
-        if(flag)
-            strcat(partialsolution,")");
+       // if(flag)
+        //    strcat(partialsolution,")");
     }
 }
 
@@ -285,8 +289,9 @@ void min1000(int from[2], int to0[3], int zeronum){
         char lower1[1024]="";
         int duo[2]={9,9};
         if(from[1]>0){//greater than 10
-            if(to0[0]>from[0])
-                min100(from+1,duo,-2,lower);
+            if(to0[0]>from[0]){
+                min100(from+1,duo,-2,lower);		
+			}
             else{
                 min100(from+1,to0+1,-2,lower);
                 flag=1;
@@ -316,12 +321,14 @@ void min1000(int from[2], int to0[3], int zeronum){
                 }
             }
         }
+		//printf("loew1 %s\n",lower1);
+		//printf("loew %s\n",lower);
         sprintf(partialf,"%d(%s%s)",from[0],lower1,lower);
         from[1]=from[2]=0;
     }
 
 	//second part
-    if(!flag){
+	if(!flag){
         if(to0[0]==9 && to0[1]==9 && to0[2]==9)
             sprintf(solution,"[%d-%d][0-9]$0-9$",from[0]+1,to0[0]);
         else{
