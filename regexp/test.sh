@@ -3,9 +3,9 @@
 
 
 if [ $# -eq 3 ]; then
-	final="$(./do.sh $1 $2 $3)"
+	final="$(./do.sh $1 $2 num $3)"
 elif [ $# -eq 2 ]; then
-	final="$(./do.sh $1 $2)"
+	final="$(./do.sh $1 $2 num)"
 else 
 	echo "Syntax: ./from.sh <from> <to> [<1 -from odd numbers> <0 -for even numbers>]? "
 	exit
