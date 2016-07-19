@@ -2,12 +2,12 @@
 
 
 
-if [ $# -eq 4 ]; then
-	final="$(./do.sh $1 $2 $3 $4)"
-elif [ $# -eq 3 ]; then
+if [ $# -eq 3 ]; then
 	final="$(./do.sh $1 $2 $3)"
+elif [ $# -eq 2 ]; then
+	final="$(./do.sh $1 $2)"
 else 
-	echo "Syntax: ./from.sh <from> <to> <varname> [<1 -from odd numbers> <0 -for even numbers>]? "
+	echo "Syntax: ./from.sh <from> <to> [<1 -from odd numbers> <0 -for even numbers>]? "
 	exit
 fi
 
