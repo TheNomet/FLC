@@ -1,7 +1,6 @@
 #!/bin/bash
 
-touch test.txt 1> /dev/null 2> /dev/null
-touch scanner.jflex 1> /dev/null 2> /dev/null
+
 
 if [ $# -eq 4 ]; then
 	final="$(./do.sh $1 $2 $3 $4)"
@@ -13,6 +12,10 @@ else
 fi
 
 cd ./fortest
+
+touch test.txt 1> /dev/null 2> /dev/null
+touch scanner.jflex 1> /dev/null 2> /dev/null
+
 var="$(echo $final | sed "s/ =[^\n]*//g")"
 cat partial.jflex | sed "s/|--|/$final/g" | sed "s/-||-/^{$var}$ {System.out.println(\"NUM\"+yytext());}/g" > scanner.jflex
 
