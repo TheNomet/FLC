@@ -12,6 +12,8 @@ let "a -= 10"
 b=$2
 let "b += 10"
 
+#echo $a $b
+
 if [ $# -eq 3 ]; then
 	final="$(./do.sh $1 $2 num $3)"
 elif [ $# -eq 2 ]; then
@@ -21,6 +23,7 @@ else
 	exit
 fi
 
+#echo $final
 cd ./fortest
 
 touch test.txt 1> /dev/null 2> /dev/null

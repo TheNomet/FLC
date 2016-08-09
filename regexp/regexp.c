@@ -424,7 +424,7 @@ void min10000(int from[4], int to0[4], int zeronum){
                         sprintf(partial,"%d({nXX%d})|[%d-%d][0-9]{2}$0-9$|%d",from[0],N,from[0]+1,to0[0]-1,to0[0]);
                     else
                         sprintf(partial,"%d({nXX%d})|%d[0-9]{2}$0-9$|%d",from[0],N,from[0]+1,to0[0]);
-                    min1000(from+1,trio,2);
+                    min1000(from+1,trio,1);
                 //}
                 N=N-11;
 
@@ -438,7 +438,7 @@ void min10000(int from[4], int to0[4], int zeronum){
             else{
                 N=N+11;
                 sprintf(partial,"%d({nXX%d})|%d",from[0],N,to0[0]);
-                min1000(from+1,trio,2);
+                min1000(from+1,trio,1);
                 N=N-11;
             }
         }
